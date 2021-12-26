@@ -2,20 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-
-
-
-    public function login(){
-        return view("admin.login");
-
+    public function index()
+    {
+        return view('home.index');
     }
-    public function login_check(Request $request){
+
+    public function about()
+    {
+        return view('home.about');
+    }
+
+    public function shop()
+    {
+        return view('home.shop');
+    }
+
+    public function test($id)
+    {
+        echo "Id Number : ", $id;
+    }
+
+    public function login()
+    {
+        return view('admin.login');
+    }
+
+    public function logincheck(Request $request){
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -28,6 +45,7 @@ class HomeController extends Controller
             'email' => 'Email ve ya şifre yanlış.',
         ]);
     }
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -36,6 +54,7 @@ class HomeController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/admin/login');
     }
+
 }
