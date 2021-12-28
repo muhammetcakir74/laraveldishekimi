@@ -1,64 +1,78 @@
 @extends('layouts.admin')
 
-@section('title','Add Treatment')
+@section('title','Edit Treatment')
+
+@section('javascript')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- include summmernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+@endsection
 
 @section('content')
         <section class="content" style="margin-top: -3rem;margin-right: 3rem;margin-left: 3rem;margin-bottom: 2rem">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Treatment Add
+                        Edit Treatment
                     </h3>
                 </div>
 
                 <div class="card-body">
 
-                    <form action="{{route('admin_treatment_store')}}">
+                    <form action="{{route('admin_treatment_update',['id'=>$data->id])}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label><b>Parent</b></label>
                             <select name="parent_id" class="form-control">
                                 <option value="0" selected>Main Treatment</option>
                                 @foreach($datalist as $rs)
-                                <option value="{{$rs->id}}">{{$rs->title}}</option>
+                                    <option value="{{$rs->id}}" @if ($rs->id == $data->category_id) selected="selected" @endif>{{$rs->title}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label><b>Title</b></label>
-                            <input type="text" class="form-control" id="title" name="title">
+                            <input type="text" class="form-control" value="{{$data->title}}" id="title" name="title">
                         </div>
                         <div class="form-group">
                             <label><b>Keywords</b></label>
-                            <input type="text" class="form-control" id="keywords"  name="keywords">
+                            <input type="text" class="form-control" id="keywords" value="{{$data->keywords}}" name="keywords">
                         </div>
                         <div class="form-group">
                             <div class="form-group">
                                 <label><b>Description</b></label>
-                                <input type="text" class="form-control" id="description" name="description">
+                                <input type="text" class="form-control" id="description" value="{{$data->description}}" name="description">
                             </div>
                         </div>
                         <div class="form-group">
                             <label><b>Status</b></label>
                             <select id="status"  name="status" class="form-control">
-                                <option selected>False</option>
+                                <option selected>{{$data->status}}</option>
+                                <option>False</option>
                                 <option>True</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <div class="form-group">
                                 <label><b>Detail</b></label>
-                                <input type="text" class="form-control" id="detail" name="detail">
+                                <textarea id="summernote" name="detail">{{$data->detail}}</textarea>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#summernote').summernote();
+                                    });
+                                </script>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-group">
                                 <label><b>Price</b></label>
-                                <input type="number" class="form-control" id="price" name="price">
+                                <input type="number" value="{{$data->price}}" class="form-control" id="price" name="price">
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Add Treatment</button>
+                        <button type="submit" class="btn btn-primary">Edit Treatment</button>
                     </form>
 
                 </div>

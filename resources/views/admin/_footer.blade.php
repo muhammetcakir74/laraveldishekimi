@@ -28,7 +28,7 @@
 </div>
 <!-- Argon Scripts -->
 <!-- Core -->
-<script src="{{asset('assets')}}/admin/vendor/jquery/dist/jquery.min.js"></script>
+
 <script src="{{asset('assets')}}/admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('assets')}}/admin/vendor/js-cookie/js.cookie.js"></script>
 <script src="{{asset('assets')}}/admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>

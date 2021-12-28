@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Laravel Diş Hekimi Admin Paneli')
+@section('title','Kategori Ekleme')
 
 @section('content')
         <section class="content" style="margin-top: -3rem;margin-right: 3rem;margin-left: 3rem;margin-bottom: 2rem">

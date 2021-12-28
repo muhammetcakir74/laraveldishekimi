@@ -93,7 +93,7 @@
                             </ul>
                         </div>
                         <div class="header__top__right__auth">
-                            <a href="{{route('admin_login')}}"><i class="fa fa-user"></i> Login</a>
+                            <a href="/admin"><i class="fa fa-user"></i> Login</a>
                         </div>
                     </div>
                 </div>

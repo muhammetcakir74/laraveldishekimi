@@ -72,11 +72,14 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $data = Category::find($id);
+        $datalist = DB::select('select * from categories');
+
+        return view('admin.category_edit',['data'=>$data,'datalist'=>$datalist]);
     }
 
     /**
@@ -84,11 +87,20 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Category::find($id);
+        $data->parent_id = $request->input('parent_id');
+        $data->title = $request->input('title');
+        $data->keywords = $request->input('keywords');
+        $data->description = $request->input('description');
+        $data->slug = $request->input('slug');
+        $data->status = $request->input('status');
+        $data->save();
+
+        return redirect()->route('admin_category');
     }
 
     /**

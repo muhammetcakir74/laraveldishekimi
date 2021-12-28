@@ -1,24 +1,32 @@
 @extends('layouts.admin')
 
-@section('title','Kategori Ekleme')
+@section('title','Add Treatment')
+
+@section('javascript')
+
+
+    <!-- include summmernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+@endsection
 
 @section('content')
         <section class="content" style="margin-top: -3rem;margin-right: 3rem;margin-left: 3rem;margin-bottom: 2rem">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Category Add
+                        Treatment Add
                     </h3>
                 </div>
 
                 <div class="card-body">
 
-                    <form action="{{route('admin_category_create')}}">
+                    <form action="{{route('admin_treatment_store')}}" method="post" enctype="multipart/form-data" >
                         @csrf
                         <div class="form-group">
                             <label><b>Parent</b></label>
-                            <select id="status"  name="parent_id" class="form-control">
-                                <option value="0" selected>Genel</option>
+                            <select name="parent_id" class="form-control">
+                                <option value="0" selected>Main Treatment</option>
                                 @foreach($datalist as $rs)
                                 <option value="{{$rs->id}}">{{$rs->title}}</option>
                                 @endforeach
@@ -39,19 +47,37 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label><b>Status</b></label>
+                            <select id="status"  name="status" class="form-control">
+                                <option selected>False</option>
+                                <option>True</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <div class="form-group">
-                                <label><b>Slug</b></label>
-                                <input type="text" class="form-control" id="slug" name="slug">
+                                <label><b>Detail</b></label>
+                                <textarea id="summernote" name="detail"></textarea>
+                                <script>
+                                    $(document).ready(function () {
+                                       $('#summernote').summernote();
+                                    });
+                                </script>
                             </div>
                         </div>
                         <div class="form-group">
-                                <label><b>State</b></label>
-                                <select id="status"  name="status" class="form-control">
-                                    <option selected>False</option>
-                                    <option>True</option>
-                                </select>
+                            <div class="form-group">
+                                <label><b>Price</b></label>
+                                <input type="number" class="form-control" id="price" name="price">
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Category</button>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label><b>Image</b></label>
+                                <input type="file" class="form-control" id="name" name="image">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add Treatment</button>
                     </form>
 
                 </div>
