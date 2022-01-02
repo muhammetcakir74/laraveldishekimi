@@ -26,6 +26,19 @@
                     </li>
                 </ul>
 
+                <hr class="my-3">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin_setting')}}">
+                            <i class="ni ni-settings-gear-65 text-default"></i>
+                            <span class="nav-link-text">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+
+
+
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm">{{$rs->parent_id}}</span>
+                                            <span class="name mb-0 text-sm">{{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}</span>
                                         </div>
                                     </div>
                                 </th><th scope="row">

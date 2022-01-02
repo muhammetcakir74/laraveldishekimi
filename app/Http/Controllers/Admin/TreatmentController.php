@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ class TreatmentController extends Controller
      */
     public function create()
     {
-        $datalist = Treatment::all();
+        $datalist = Category::with('children')->get();
         return view('admin.treatment_add',['datalist'=>$datalist]);
     }
 
@@ -78,7 +79,7 @@ class TreatmentController extends Controller
     public function edit($id)
     {
         $data = Treatment::find($id);
-        $datalist = DB::select('select * from treatments');
+        $datalist = Category::with('children')->get();
         return view('admin.treatment_edit',['data'=>$data,'datalist'=>$datalist]);
     }
 

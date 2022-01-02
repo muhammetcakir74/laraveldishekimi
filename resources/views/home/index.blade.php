@@ -1,12 +1,11 @@
 @extends("layouts.home")
-@section('title', 'Laravel Diş Tedavi Sitesi')
+@section('title',$setting->title)
 
 
-@section('description')
-    Diş Tedavi Sitesi
-@endsection
+@section('description'){{$setting->description}}@endsection
 
-@section('keywords',"Diş","Dişçi","Diş Ağrısı")
+@section('keywords',$setting->keywords)
+
 
 @section('content')
     <div class="hero__item set-bg justify-content-center align-items-center" data-setbg="{{asset('assets')}}/img/hero/banner.jpg">

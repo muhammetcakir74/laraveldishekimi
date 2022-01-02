@@ -24,11 +24,11 @@
                     <form action="{{route('admin_treatment_store')}}" method="post" enctype="multipart/form-data" >
                         @csrf
                         <div class="form-group">
-                            <label><b>Parent</b></label>
+                            <label><b>Category</b></label>
                             <select name="parent_id" class="form-control">
                                 <option value="0" selected>Main Treatment</option>
                                 @foreach($datalist as $rs)
-                                <option value="{{$rs->id}}">{{$rs->title}}</option>
+                                    <option value="{{$rs->id}}">{{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs, $rs->title)}}</option>
                                 @endforeach
                             </select>
                         </div>

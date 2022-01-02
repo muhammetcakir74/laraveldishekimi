@@ -2,19 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index()
+    public static function categorylist()
     {
-        return view('home.index');
+        return Category::where('parent_id', '=', 0)->with('children')->get();
     }
 
-    public function about()
+    public static function getSettings()
     {
-        return view('home.about');
+        return Setting::first();
+    }
+
+
+    public function index()
+    {
+        $setting = Setting::first();
+        return view('home.index',['setting'=>$setting]);
+    }
+
+    public function aboutus()
+    {
+        return view('home.aboutus');
+    }
+    public function contact()
+    {
+        return view('home.contact');
+    }
+    public function references()
+    {
+        return view('home.references');
+    }
+    public function faq()
+    {
+        return view('home.faq');
     }
 
     public function shop()
