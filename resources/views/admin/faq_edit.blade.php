@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Edit Treatment')
+@section('title','S.S.S Düzenle')
 
 @section('javascript')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -14,58 +14,27 @@
         <section class="content" style="margin-top: -3rem;margin-right: 3rem;margin-left: 3rem;margin-bottom: 2rem">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">
-                        Edit Treatment
-                    </h3>
+                    <h1 style="color: red;" class="card-title">
+                        S.S.S Düzenle
+                    </h1>
                 </div>
 
                 <div class="card-body">
 
-                    <form action="{{route('admin_treatment_update',['id'=>$data->id])}}" method="post">
+                    <form action="{{route('admin_faq_update',['id'=>$data->id])}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label><b>Category</b></label>
-                            <select name="category_id" class="form-control">
-                                <option value="0" selected>Main Treatment</option>
-                                @foreach($datalist as $rs)
-                                    <option value="{{$rs->id}}" @if ($rs->id == $data->category_id) selected="selected" @endif>
-                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label><b>Sıra</b></label>
+                            <input type="number" class="form-control" value="{{$data->position}}" id="position" name="position">
                         </div>
                         <div class="form-group">
-                            <label><b>Title</b></label>
-                            <input type="text" class="form-control" value="{{$data->title}}" id="title" name="title">
-                        </div>
-                        <div class="form-group">
-                            <label><b>Keywords</b></label>
-                            <input type="text" class="form-control" id="keywords" value="{{$data->keywords}}" name="keywords">
+                            <label><b>Soru</b></label>
+                            <input type="text" class="form-control" id="question"  name="question" value="{{$data->question}}">
                         </div>
                         <div class="form-group">
                             <div class="form-group">
-                                <label><b>Description</b></label>
-                                <input type="text" class="form-control" id="description" value="{{$data->description}}" name="description">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Slug</b></label>
-                                <input type="text" class="form-control" id="description" value="{{$data->slug}}" name="slug">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Status</b></label>
-                            <select id="status"  name="status" class="form-control">
-                                <option selected>{{$data->status}}</option>
-                                <option>False</option>
-                                <option>True</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Detail</b></label>
-                                <textarea id="summernote" name="detail">{{$data->detail}}</textarea>
+                                <label><b>Cevap</b></label>
+                                <textarea id="summernote" name="answer">{{$data->answer}}</textarea>
                                 <script>
                                     $(document).ready(function () {
                                         $('#summernote').summernote();
@@ -74,19 +43,21 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Price</b></label>
-                                <input type="number" value="{{$data->price}}" class="form-control" id="price" name="price">
-                            </div>
+                            <label><b>Durum</b></label>
+                            <select id="status"  name="status" class="form-control">
+                                <option selected>{{$data->status}}</option>
+                                <option>True</option>
+                                <option>False</option>
+                            </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Edit Treatment</button>
+                        <button type="submit" class="btn btn-primary">Düzenle</button>
                     </form>
 
                 </div>
 
                 <div class="card-footer">
-                    Footer
+                    --
                 </div>
             </div>
         </section>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Edit Treatment')
+@section('title','Tedavi Düzenle')
 
 @section('javascript')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -14,9 +14,9 @@
         <section class="content" style="margin-top: -3rem;margin-right: 3rem;margin-left: 3rem;margin-bottom: 2rem">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">
-                        Edit Treatment
-                    </h3>
+                    <h1 style="color: red;" class="card-title">
+                        Tedavi Düzenle
+                    </h1>
                 </div>
 
                 <div class="card-body">
@@ -24,8 +24,8 @@
                     <form action="{{route('admin_treatment_update',['id'=>$data->id])}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label><b>Category</b></label>
-                            <select name="parent_id" class="form-control">
+                            <label><b>Kategori</b></label>
+                            <select name="category_id" class="form-control">
                                 <option value="0" selected>Main Treatment</option>
                                 @foreach($datalist as $rs)
                                     <option value="{{$rs->id}}" @if ($rs->id == $data->category_id) selected="selected" @endif>
@@ -35,7 +35,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><b>Title</b></label>
+                            <label><b>İsim</b></label>
                             <input type="text" class="form-control" value="{{$data->title}}" id="title" name="title">
                         </div>
                         <div class="form-group">
@@ -44,12 +44,18 @@
                         </div>
                         <div class="form-group">
                             <div class="form-group">
-                                <label><b>Description</b></label>
+                                <label><b>Açıklama</b></label>
                                 <input type="text" class="form-control" id="description" value="{{$data->description}}" name="description">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label><b>Status</b></label>
+                            <div class="form-group">
+                                <label><b>Slug</b></label>
+                                <input type="text" class="form-control" id="description" value="{{$data->slug}}" name="slug">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><b>Durum</b></label>
                             <select id="status"  name="status" class="form-control">
                                 <option selected>{{$data->status}}</option>
                                 <option>False</option>
@@ -58,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-group">
-                                <label><b>Detail</b></label>
+                                <label><b>Detay</b></label>
                                 <textarea id="summernote" name="detail">{{$data->detail}}</textarea>
                                 <script>
                                     $(document).ready(function () {
@@ -69,18 +75,18 @@
                         </div>
                         <div class="form-group">
                             <div class="form-group">
-                                <label><b>Price</b></label>
+                                <label><b>Fiyat</b></label>
                                 <input type="number" value="{{$data->price}}" class="form-control" id="price" name="price">
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Edit Treatment</button>
+                        <button type="submit" class="btn btn-primary">Tedaviyi Düzenle</button>
                     </form>
 
                 </div>
 
                 <div class="card-footer">
-                    Footer
+                    --
                 </div>
             </div>
         </section>

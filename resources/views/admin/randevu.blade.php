@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Yorumlar')
+@section('title','Randevular')
 
 @section('content')
 
@@ -19,7 +19,7 @@
         <div class="col">
             <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
-                    <h3 class="text-white mb-0" style="display: inline">Yorumlar</h3>
+                    <h3 class="text-white mb-0" style="display: inline">Randevu Listesi</h3>
                     @include('home.message')
                 </div>
                 <div class="table-responsive">
@@ -27,13 +27,14 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col" class="sort" data-sort="name">Id</th>
-                            <th scope="col" class="sort" data-sort="name">İsim</th>
-                            <th scope="col" class="sort" data-sort="name">Tedavi</th>
-                            <th scope="col" class="sort" data-sort="name">Konu</th>
-                            <th scope="col" class="sort" data-sort="name">Yorum</th>
-                            <th scope="col" class="sort" data-sort="name">Puan</th>
-                            <th scope="col" class="sort" data-sort="name">Durum</th>
+                            <th scope="col" class="sort" data-sort="name">Hasta Adı</th>
+                            <th scope="col" class="sort" data-sort="name">Doktor Adı</th>
+                            <th scope="col" class="sort" data-sort="name">Tedavi Adı</th>
                             <th scope="col" class="sort" data-sort="name">Tarih</th>
+                            <th scope="col" class="sort" data-sort="name">Saat</th>
+                            <th scope="col" class="sort" data-sort="name">IP</th>
+                            <th scope="col" class="sort" data-sort="name">Hasta Notu</th>
+                            <th scope="col" class="sort" data-sort="name">Durum</th>
                             <th scope="col" class="sort" data-sort="name">İşlemler</th>
                         </tr>
                         </thead>
@@ -50,7 +51,14 @@
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm">{{$rs->name}}</span>
+                                            <span class="name mb-0 text-sm">{{$rs->user->name}}</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">{{\App\Http\Controllers\UserController::getdoctorname($rs->doctor_id)}}</span>
                                         </div>
                                     </div>
                                 </th>
@@ -67,20 +75,27 @@
                                 </th><th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm">{{$rs->subject}}</span>
+                                            <span class="name mb-0 text-sm">{{$rs->date}}</span>
                                         </div>
                                     </div>
                                 </th><th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm">{{$rs->review}}</span>
+                                            <span class="name mb-0 text-sm">{{$rs->time}}</span>
                                         </div>
                                     </div>
                                 </th>
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm">{{$rs->rate}}</span>
+                                            <span class="name mb-0 text-sm">{{$rs->IP}}</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">{{$rs->note}}</span>
                                         </div>
                                     </div>
                                 </th>
@@ -93,18 +108,21 @@
                                 </th>
                                 <th scope="row">
                                     <div class="media align-items-center">
+                                        @if($rs->status=='Onaylanmadı')
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm">{{$rs->created_at}}</span>
+                                            <span><a href="{{route('admin_randevu_approval',['id'=>$rs->id])}}"><img src="{{asset('assets')}}/img/onay-button.png" width="30px"></a></span>
                                         </div>
-                                    </div>
-                                </th>
-                                <th scope="row">
-                                    <div class="media align-items-center">
+                                        @endif
+                                        @if($rs->status=='Onaylandı')
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm"><a href="{{route('admin_review_show',['id'=>$rs->id])}}" onclick="return !window.open(this.href, '','top=50 left=100 witdh=200,height=200')"><img src="{{asset('assets')}}/img/edit-button.png" width="30px"></a></span>
+                                            <span><a href="{{route('admin_randevu_approval_cancel',['id'=>$rs->id])}}"><img src="{{asset('assets')}}/img/cancel-button.png" width="30px"></a></span>
+                                        </div>
+                                            @endif
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm"><a href="{{route('admin_randevu_edit',['id'=>$rs->id])}}"><img src="{{asset('assets')}}/img/edit-button.png" width="30px"></a></span>
                                         </div>
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm"><a href="{{route('admin_review_delete',['id'=>$rs->id])}}" onclick="return confirm('Siliniyor Emin misinizi?')"><img src="{{asset('assets')}}/img/delete-button.png" width="30px"></a></span>
+                                            <span class="name mb-0 text-sm"><a href="{{route('admin_randevu_delete',['id'=>$rs->id])}}" onclick="return confirm('Siliniyor Emin misinizi?')"><img src="{{asset('assets')}}/img/delete-button.png" width="30px"></a></span>
                                         </div>
                                     </div>
                                 </th>

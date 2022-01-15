@@ -1,28 +1,28 @@
 @extends('layouts.admin')
 
-@section('title','Treatment List')
+@section('title','Tedaviler')
 
 @section('content')
     <div class="row" style="margin-top: -3rem;margin-right: 1rem;margin-left: 1rem;margin-bottom: 2rem">
         <div class="col">
             <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
-                    <h3 class="text-white mb-0" style="display: inline">Treatments</h3>
-                    <a type="button" href="{{route('admin_treatment_add')}}" class="btn btn-success btn-xs float-right">Add Treatment<span class="glyphicon glyphicon-plus"></span></a>
+                    <h3 class="text-white mb-0" style="display: inline">Tedaviler</h3>
+                    <a type="button" href="{{route('admin_treatment_add')}}" class="btn btn-success btn-xs float-right">Tedavi Ekle<span class="glyphicon glyphicon-plus"></span></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-dark table-flush">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col" class="sort" data-sort="name">Id</th>
-                            <th scope="col" class="sort" data-sort="name">Category</th>
-                            <th scope="col" class="sort" data-sort="name">Title(s)</th>
-                            <th scope="col" class="sort" data-sort="name">Status</th>
-                            <th scope="col" class="sort" data-sort="name">Price</th>
-                            <th scope="col" class="sort" data-sort="name">Image</th>
-                            <th scope="col" class="sort" data-sort="name" style="text-align: center;">Image Gallery</th>
-                            <th scope="col" class="sort" data-sort="name">Edit</th>
-                            <th scope="col" class="sort" data-sort="name">Delete</th>
+                            <th scope="col" class="sort" data-sort="name">Kategori</th>
+                            <th scope="col" class="sort" data-sort="name">İsim</th>
+                            <th scope="col" class="sort" data-sort="name">Durum</th>
+                            <th scope="col" class="sort" data-sort="name">Fiyat</th>
+                            <th scope="col" class="sort" data-sort="name">Resim</th>
+                            <th scope="col" class="sort" data-sort="name" style="text-align: center;">Resim Galerisi</th>
+                            <th scope="col" class="sort" data-sort="name">Düzenle</th>
+                            <th scope="col" class="sort" data-sort="name">Sil</th>
                         </tr>
                         </thead>
                         <tbody class="list">
@@ -82,14 +82,14 @@
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm"><a href="{{route('admin_treatment_edit',['id'=>$rs->id])}}">Edit</a></span>
+                                            <span class="name mb-0 text-sm"><a href="{{route('admin_treatment_edit',['id'=>$rs->id])}}"><img src="{{asset('assets')}}/img/edit-button.png" width="30px"></a></span>
                                         </div>
                                     </div>
                                 </th>
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="name mb-0 text-sm"><a href="{{route('admin_treatment_delete',['id'=>$rs->id])}}" onclick="return confirm('Öğe siliniyor emin misiniz?')">Delete</a></span>
+                                            <span class="name mb-0 text-sm"><a href="{{route('admin_treatment_delete',['id'=>$rs->id])}}" onclick="return confirm('Öğe siliniyor emin misiniz?')"><img src="{{asset('assets')}}/img/delete-button.png" width="30px"></a></span>
                                         </div>
                                     </div>
                                 </th>

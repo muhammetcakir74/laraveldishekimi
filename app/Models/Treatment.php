@@ -15,4 +15,19 @@ class Treatment extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function randevu()
+    {
+        return $this->hasMany(Randevu::class);
+    }
+
+    public function process()
+    {
+        return $this->hasMany(Process::class);
+    }
+
 }

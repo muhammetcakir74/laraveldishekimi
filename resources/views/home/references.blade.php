@@ -1,5 +1,5 @@
 @extends("layouts.home")
-@section('title','About Us' . $setting->title)
+@section('title','Referanlar ' . $setting->title)
 
 
 @section('description'){{$setting->description}}@endsection
@@ -9,6 +9,29 @@
 
 @section('content')
 
-    {!! $setting->referances !!}
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" style="margin-bottom: 20px;" data-setbg="{{asset('assets')}}/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Referanlar</h2>
+                        <div class="breadcrumb__option">
+                            <a href="{{route('home')}}">Ana Sayfa</a>
+                            <span>Referanlar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
 
+    <section class="hero">
+        <div class="container">
+            <div class="row" style="margin-left: 5rem">
+                {!! $setting->references !!}
+            </div>
+        </div>
+    </section>
 @endsection

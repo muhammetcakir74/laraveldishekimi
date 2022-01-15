@@ -50,6 +50,7 @@ class TreatmentController extends Controller
         $data->category_id = $request->input('category_id');
         $data->user_id = Auth::id();
         $data->price = $request->input('price');
+        $data->slug = $request->input('slug');
         $data->detail = $request->input('detail');
         $data->image = Storage::putFile('images',$request->file('image'));
         $data->save();
@@ -100,6 +101,7 @@ class TreatmentController extends Controller
         $data->category_id = $request->input('category_id');
         $data->user_id = Auth::id();
         $data->price = $request->input('price');
+        $data->slug = $request->input('slug');
         $data->detail = $request->input('detail');
         $data->save();
 

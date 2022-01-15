@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title',"User Profile")
+@section('title',"Üye Profili")
 
 
 @section('content')
@@ -12,10 +12,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>User Profile</h2>
+                        <h2>Üye Profili</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>User</span>
+                            <a href="./index.html">Ana Sayfa</a>
+                            <span>Üye</span>
                         </div>
                     </div>
                 </div>
@@ -32,14 +32,31 @@
                     <div class="sidebar">
                         <div class="sidebar__item p-3 mb-2 bg-dark text-white" style=" border-radius: 10px 10px 10px 10px;">
                             <h4 class="text-danger" style="border-bottom: 4px solid white;margin-bottom: 10px!important;padding-bottom: 10px;">User Panel</h4>
-                            <ul>
-                                <li><a style="color: white;" href="{{route('myprofile')}}">My Profile</a></li>
-                                <li><a style="color: white;" href="#">My Orders</a></li>
-                                <li><a style="color: white;" href="#">My Reviews</a></li>
-                                <li><a style="color: white;" href="#">My Shopcart</a></li>
-                                <li><a style="color: white;" href="#">My Messages</a></li>
-                                <li><a style="color: white;" href="{{route('logout')}}">Logout</a></li>
-                            </ul>
+                            @php
+                                use Illuminate\Support\Facades\Auth;
+                                $userRoles = Auth::user()->role->pluck('name');
+                            @endphp
+                            @if($userRoles->contains('user'))
+                                <ul>
+                                    <li><a style="color: white;" href="{{route('profile.show')}}">Profilim</a></li>
+                                    <li><a style="color: white;" href="{{route('user_randevu_show')}}">Tedavilerim</a></li>
+                                    <li><a style="color: white;" href="{{route('myreviews')}}">Yorumlarım</a></li>
+                                    <li><a style="color: white;" href="{{route('logout')}}">Çıkış</a></li>
+                                </ul>
+                                @elseif($userRoles->contains('admin'))
+                                <ul>
+                                    <li><a style="color: white;" href="{{route('profile.show')}}">Profilim</a></li>
+                                    <li><a style="color: white;" href="{{route('adminhome')}}">Admin Panel</a></li>
+                                    <li><a style="color: white;" href="{{route('logout')}}">Çıkış</a></li>
+                                </ul>
+                            @elseif($userRoles->contains('doctor'))
+                                <ul>
+                                    <li><a style="color: white;" href="{{route('profile.show')}}">Profilim</a></li>
+                                    <li><a style="color: white;" href="{{route('doctor_randevu_show')}}">Randevularım</a></li>
+                                    <li><a style="color: white;" href="{{route('logout')}}">Çıkış</a></li>
+                                </ul>
+                            @endif
+
                         </div>
 
                     </div>

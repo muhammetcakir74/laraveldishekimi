@@ -25,7 +25,7 @@
       -ms-user-select: none;
           user-select: none;
   white-space: nowrap;
-  width: auto; }
+  width: 225px; }
   .nice-select:hover {
     border-color: #dbdbdb; }
   .nice-select:active, .nice-select.open, .nice-select:focus {
@@ -87,13 +87,15 @@
       line-height: 34px;
       min-height: 34px; }
   .nice-select .list {
+	width:225px;
+	height:200px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
     box-sizing: border-box;
     margin-top: 4px;
     opacity: 0;
-    overflow: hidden;
+    overflow: auto;
     padding: 0;
     pointer-events: none;
     position: absolute;

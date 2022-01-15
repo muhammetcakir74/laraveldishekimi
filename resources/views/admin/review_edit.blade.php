@@ -34,16 +34,16 @@
 
             <div class="card-header">
                 <h3 class="card-title">
-                    Message Details
+                    Yorum Detayları
 
                 </h3>
             </div>
 
             <div class="card-body" style="padding: 0;">
 
-                <form action="{{route('admin_messages_update',['id'=>$data->id])}}" method="post">
+                <form action="{{route('admin_review_update',['id'=>$data->id])}}" method="post">
                     @csrf
-                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
                         <div class="row">
                         <div class="col-2">
                             <label><b>Id</b></label>
@@ -53,58 +53,102 @@
                         </div>
                         </div>
                     </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
                         <div class="row">
                             <div class="col-2">
-                                <label><b>Name</b></label>
+                                <label><b>İsim</b></label>
                             </div>
                             <div class="col-10">
-                                {{$data->name}}
+                                {{$data->user->name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Tedavi</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->treatment->title}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Konu</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->subject}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Yorum</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->review}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Puan</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->rate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>IP</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->IP}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Oluşturulma Zamanı</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->created_at}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Güncellenme Zamanı</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->updated_at}}
                             </div>
                         </div>
                     </div>
                     <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
                         <div class="row">
                             <div class="col-2">
-                                <label><b>Email</b></label>
+                                <label><b>Durum</b></label>
                             </div>
                             <div class="col-10">
-                                {{$data->email}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>Phone</b></label>
-                            </div>
-                            <div class="col-10">
-                                {{$data->phone}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>Message</b></label>
-                            </div>
-                            <div class="col-10">
-                                {{$data->message}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>Note</b></label>
-                            </div>
-                            <div class="col-10">
-                                <textarea id="summernote" name="note">{{$data->note}}</textarea>
+                                <select name="status">
+                                    <option selected>{{$data->status}}</option>
+                                    <option>True</option>
+                                    <option>False</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Update Message</button>
+                        <button type="submit" class="btn btn-primary">Mesajı Güncelle</button>
                     </div>
 
                 </form>

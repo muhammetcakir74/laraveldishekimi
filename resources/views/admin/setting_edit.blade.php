@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Edit Setting')
+@section('title','Ayarlar')
 
 @section('javascript')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header bg-dark">
                     <h2 class="card-title text-white text-center">
-                        Edit Settings
+                        Ayarlar
                     </h2>
                 </div>
 
@@ -27,19 +27,19 @@
                         <div class="card-body">
                     <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>General</a>
+                            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>Genel</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>Contacts</a>
+                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>İletişim</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="ni ni-calendar-grid-58 mr-2"></i>SMTP</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="ni ni-planet mr-2"></i>Social</a>
+                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="ni ni-planet mr-2"></i>Sosyal Medya</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-5-tab" data-toggle="tab" href="#tabs-icons-text-5" role="tab" aria-controls="tabs-icons-text-5" aria-selected="false"><i class="ni ni-email-83 mr-2"></i>About Us/Contact/References</a>
+                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-5-tab" data-toggle="tab" href="#tabs-icons-text-5" role="tab" aria-controls="tabs-icons-text-5" aria-selected="false"><i class="ni ni-email-83 mr-2"></i>Hakkımızda/İletişim/Referanslar</a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +51,7 @@
 
                                 <div class="form-group">
                                     <input type="hidden" value="{{$data->id}}" class="form-control" id="id" name="id">
-                                    <label><b>Title</b></label>
+                                    <label><b>Site Başlığı</b></label>
                                     <input type="text" class="form-control" value="{{$data->title}}" id="title" name="title">
                                 </div>
                                 <div class="form-group">
@@ -59,11 +59,11 @@
                                     <input type="text" class="form-control" id="keywords" value="{{$data->keywords}}" name="keywords">
                                 </div>
                                 <div class="form-group">
-                                    <label><b>Description</b></label>
+                                    <label><b>Açıklama</b></label>
                                     <input type="text" class="form-control" id="description" value="{{$data->description}}" name="description">
                                 </div>
                                 <div class="form-group">
-                                    <label><b>Company</b></label>
+                                    <label><b>Şirket</b></label>
                                     <input type="text" class="form-control" id="company" value="{{$data->company}}" name="company">
                                 </div>
 
@@ -74,11 +74,11 @@
 
 
                                 <div class="form-group">
-                                    <label><b>Address</b></label>
+                                    <label><b>Adres</b></label>
                                     <input type="text" value="{{$data->address}}" class="form-control" id="address" name="address">
                                 </div>
                                 <div class="form-group">
-                                    <label><b>Phone</b></label>
+                                    <label><b>Telefon</b></label>
                                     <input type="text" value="{{$data->phone}}" class="form-control" id="phone" name="phone">
                                 </div>
 
@@ -97,22 +97,22 @@
                             <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
 
                                 <div class="form-group">
-                                    <label><b>Smtp Server</b></label>
+                                    <label><b>SMTP Sunucu</b></label>
                                     <input type="text" value="{{$data->smtpserver}}" class="form-control" id="smtpserver" name="smtpserver">
                                 </div>
 
                                 <div class="form-group">
-                                    <label><b>Smtp Email</b></label>
+                                    <label><b>SMTP Email</b></label>
                                     <input type="email" value="{{$data->smtpemail}}" class="form-control" id="smtpemail" name="smtpemail">
                                 </div>
 
                                 <div class="form-group">
-                                    <label><b>Smtp Password</b></label>
+                                    <label><b>SMTP Şifre</b></label>
                                     <input type="text" value="{{$data->smtppassword}}" class="form-control" id="smtppassword" name="smtppassword">
                                 </div>
 
                                 <div class="form-group">
-                                    <label><b>Smtp Port</b></label>
+                                    <label><b>SMTP Port</b></label>
                                     <input type="number" value="{{$data->smtpport}}" class="form-control" id="smtpport" name="smtpport">
                                 </div>
 
@@ -147,22 +147,22 @@
 
 
                                 <div class="form-group">
-                                    <label><b>About Us</b></label>
+                                    <label><b>Hakkımızıda</b></label>
                                     <textarea id="aboutus" name="aboutus">{{$data->aboutus}}</textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label><b>Contact</b></label>
+                                    <label><b>İletişim</b></label>
                                     <textarea id="contact" name="contact">{{$data->contact}}</textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label><b>References</b></label>
+                                    <label><b>Referanslar</b></label>
                                     <textarea id="references" name="references">{{$data->references}}</textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label><b>Status</b></label>
+                                    <label><b>Durum</b></label>
                                     <select class="form-control" id="status" name="status">
                                         <option>{{$data->status}}</option>
                                         <option>False</option>
@@ -183,13 +183,13 @@
                 </div>
 
 
-                        <button type="submit" class="btn btn-primary" style="margin-left: 2rem;">Edit Settings</button>
+                        <button type="submit" class="btn btn-primary" style="margin-left: 2rem;">Ayarları Güncelle</button>
                     </form>
 
                 </div>
 
                 <div class="card-footer">
-                    Footer
+                    --
                 </div>
             </div>
         </section>

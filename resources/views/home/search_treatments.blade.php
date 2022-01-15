@@ -1,10 +1,8 @@
 @extends("layouts.home")
-@section('title',$data->title)
+@section('title',$search ."Treatment List")
 
 
-@section('description'){{$data->description}}@endsection
 
-@section('keywords',$data->keywords)
 
 
 @section('content')
@@ -15,10 +13,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>Nigo Denta Diş Hastanesi</h2>
                         <div class="breadcrumb__option">
-                            <a href="{{route('home')}}" style="color: orange;">Home</a>
-                            <span style="color: #b1dfbb;">{{$data->title}}</span>
+                            <a href="{{route('home')}}" style="color: orange;">Ana Sayfa</a>
+                            <span style="color: #b1dfbb;">{{$search}}</span>
                         </div>
                     </div>
                 </div>
@@ -38,7 +36,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
-                                    <span>Sort By</span>
+                                    <span>Sırala</span>
                                     <select>
                                         <option value="0">Default</option>
                                         <option value="0">Default</option>
@@ -47,7 +45,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
+                                    <h6></h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">

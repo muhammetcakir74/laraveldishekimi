@@ -35,7 +35,15 @@
     @include('admin._footer')
 
 
-
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("div.alert-block").fadeOut("slow", function () {
+                    $("div.alert-block").remove();
+                });
+            }, 5000);
+        });
+    </script>
 
 
 </body>

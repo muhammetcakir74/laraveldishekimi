@@ -1,87 +1,118 @@
-@extends('layouts.admin')
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-@section('title','Edit Treatment')
+<script src="{{asset('assets')}}/js/jquery-3.3.1.min.js"></script>
 
-@section('javascript')
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <!-- include summmernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-@endsection
+<!-- Css Styles -->
 
-@section('content')
-        <section class="content" style="margin-top: -3rem;margin-right: 3rem;margin-left: 3rem;margin-bottom: 2rem">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Edit Treatment
-                    </h3>
-                </div>
+<link rel="stylesheet" href="{{asset('assets')}}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/style.css" type="text/css">
 
-                <div class="card-body">
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $("div.alert").fadeOut("slow", function () {
+                $("div.alert").remove();
+            });
+        }, 5000);
+    });
+</script>
 
-                    <form action="{{route('admin_treatment_update',['id'=>$data->id])}}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label><b>Category</b></label>
-                            <select name="parent_id" class="form-control">
-                                <option value="0" selected>Main Treatment</option>
-                                @foreach($datalist as $rs)
-                                    <option value="{{$rs->id}}" @if ($rs->id == $data->category_id) selected="selected" @endif>
-                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Title</b></label>
-                            <input type="text" class="form-control" value="{{$data->title}}" id="title" name="title">
-                        </div>
-                        <div class="form-group">
-                            <label><b>Keywords</b></label>
-                            <input type="text" class="form-control" id="keywords" value="{{$data->keywords}}" name="keywords">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Description</b></label>
-                                <input type="text" class="form-control" id="description" value="{{$data->description}}" name="description">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Status</b></label>
-                            <select id="status"  name="status" class="form-control">
-                                <option selected>{{$data->status}}</option>
-                                <option>False</option>
-                                <option>True</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Detail</b></label>
-                                <textarea id="summernote" name="detail">{{$data->detail}}</textarea>
-                                <script>
-                                    $(document).ready(function () {
-                                        $('#summernote').summernote();
-                                    });
-                                </script>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Price</b></label>
-                                <input type="number" value="{{$data->price}}" class="form-control" id="price" name="price">
-                            </div>
-                        </div>
 
-                        <button type="submit" class="btn btn-primary">Edit Treatment</button>
-                    </form>
 
-                </div>
 
-                <div class="card-footer">
-                    Footer
-                </div>
+
+    <section class="content" style="margin-top: 3rem;margin-right: 3rem;margin-left: 3rem;margin-bottom: 2rem">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3 class="card-title">
+                    Mesaj Detayları
+
+                </h3>
             </div>
-        </section>
-@endsection
+
+            <div class="card-body" style="padding: 0;">
+
+                <form action="{{route('admin_messages_update',['id'=>$data->id])}}" method="post">
+                    @csrf
+                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                        <div class="row">
+                        <div class="col-2">
+                            <label><b>Id</b></label>
+                        </div>
+                        <div class="col-10">
+                            {{$data->id}}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>İsim</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Email</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->email}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Telefon</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->phone}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Mesaj</b></label>
+                            </div>
+                            <div class="col-10">
+                                {{$data->message}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
+                        <div class="row">
+                            <div class="col-2">
+                                <label><b>Not</b></label>
+                            </div>
+                            <div class="col-10">
+                                <textarea id="summernote" name="note">{{$data->note}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Mesajı Güncelle</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+        </div>
+        <div class="alert">@include('home.message')</div>
+    </section>
+

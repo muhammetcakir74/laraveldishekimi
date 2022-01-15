@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Tedavi Düzenle')
+@section('title','Randevu Düzenle')
 
 @section('javascript')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -15,57 +15,88 @@
             <div class="card">
                 <div class="card-header">
                     <h1 style="color: red;" class="card-title">
-                        Tedavi Düzenle
+                        Randevu Düzenle
                     </h1>
                 </div>
-
+                @include('home.message')
                 <div class="card-body">
 
-                    <form action="{{route('admin_treatment_update',['id'=>$data->id])}}" method="post">
+                    <form action="{{route('admin_randevu_update',['id'=>$data->id])}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label><b>Kategori</b></label>
-                            <select name="category_id" class="form-control">
-                                <option value="0" selected>Main Treatment</option>
-                                @foreach($datalist as $rs)
-                                    <option value="{{$rs->id}}" @if ($rs->id == $data->category_id) selected="selected" @endif>
-                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}
+                            <label><b>Tedavi</b></label>
+                            <select name="treatment_id" class="form-control">
+                                @foreach($treatments as $rs)
+                                    <option value="{{$rs->id}}" @if ($rs->id == $data->treatment_id) selected="selected" @endif>
+                                        {{$rs->title}}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><b>İsim</b></label>
-                            <input type="text" class="form-control" value="{{$data->title}}" id="title" name="title">
+                            <label><b>Hasta Adı</b></label>
+                            <input type="text" class="form-control" value="{{$data->user->name}}" disabled>
                         </div>
                         <div class="form-group">
-                            <label><b>Keywords</b></label>
-                            <input type="text" class="form-control" id="keywords" value="{{$data->keywords}}" name="keywords">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Açıklama</b></label>
-                                <input type="text" class="form-control" id="description" value="{{$data->description}}" name="description">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Slug</b></label>
-                                <input type="text" class="form-control" id="description" value="{{$data->slug}}" name="slug">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Durum</b></label>
-                            <select id="status"  name="status" class="form-control">
-                                <option selected>{{$data->status}}</option>
-                                <option>False</option>
-                                <option>True</option>
+                            <label><b>Doktor Adı</b></label>
+                            <select id="doctor_id" name="doctor_id" class="form-control">
+                                @foreach($users as $rs)
+                                    @if($rs->role->pluck('name')->contains('doctor'))
+                                        <option value="{{$rs->id}}"@if ($rs->id == $data->doctor_id) selected="selected" @endif>{{$rs->name}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <div class="form-group">
-                                <label><b>Detay</b></label>
-                                <textarea id="summernote" name="detail">{{$data->detail}}</textarea>
+                                <label><b>Tarih</b></label>
+                                <input type="date" class="form-control" id="date" name="date" value="{{$data->date}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label><b>Saat</b></label>
+                                <select id="time" name="time" class="form-control">
+                                    <option value="{{$data->time}}" selected>{{$data->time}}</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:15">08:15</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="08:45">08:45</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:15">09:15</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="09:45">09:45</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:15">10:15</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="10:45">10:45</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:15">11:15</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="11:45">11:45</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:15</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="13:45">13:45</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:15">14:15</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="14:45">14:45</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:15">15:15</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="15:45">15:45</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:15">16:15</option>
+                                    <option value="16:30">16:30</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label><b>Hasta Notu</b></label>
+                                <textarea id="summernote" name="note">{{$data->note}}</textarea>
                                 <script>
                                     $(document).ready(function () {
                                         $('#summernote').summernote();
@@ -74,13 +105,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="form-group">
-                                <label><b>Fiyat</b></label>
-                                <input type="number" value="{{$data->price}}" class="form-control" id="price" name="price">
-                            </div>
+                            <label><b>Durum</b></label>
+                            <select id="status"  name="status" class="form-control">
+                                <option selected>{{$data->status}}</option>
+                                <option>Onaylanmadı</option>
+                                <option>Onaylandı</option>
+                            </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Tedaviyi Düzenle</button>
+
+                        <button type="submit" class="btn btn-primary">Randevuyu Düzenle</button>
                     </form>
 
                 </div>

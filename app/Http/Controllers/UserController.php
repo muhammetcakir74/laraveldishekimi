@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Randevu;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,6 +19,40 @@ class UserController extends Controller
     {
         return view('home.user_profile');
     }
+
+
+    public function myreviews()
+    {
+        $datalist = Review::where('user_id','=',Auth::user()->id)->get();
+        return view('home.user_reviews',['datalist'=>$datalist]);
+    }
+
+    public function destroymyreview(Review $review,$id)
+    {
+        $data=Review::find($id);
+        $data->delete();
+        return redirect()->back()->with('succes','Review Deleted');
+    }
+
+    public function doctorrandevushow()
+    {
+        $datalist = Randevu::where('doctor_id','=',Auth::user()->id)->get();
+        return view('home.doctor_treatments',['datalist'=>$datalist]);
+    }
+
+    public function userrandevushow()
+    {
+        $datalist = Randevu::where('user_id','=',Auth::user()->id)->get();
+        return view('home.user_treatments',['datalist'=>$datalist]);
+    }
+
+
+    public static function getdoctorname($id)
+    {
+        $user = User::find($id);
+        return $user->name;
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -34,14 +34,14 @@
 
             <div class="card-header">
                 <h3 class="card-title">
-                    Message Details
+                    Üye Rolleri
 
                 </h3>
             </div>
 
             <div class="card-body" style="padding: 0;">
 
-                <form action="{{route('admin_review_update',['id'=>$data->id])}}" method="post">
+                <form action="{{route('admin_user_role_add',['id'=>$data->id])}}" method="post">
                     @csrf
                     <div class="form-group" style="border-bottom: 1px solid gray;">
                         <div class="row">
@@ -56,99 +56,55 @@
                     <div class="form-group" style="border-bottom: 1px solid gray;">
                         <div class="row">
                             <div class="col-2">
-                                <label><b>Name</b></label>
+                                <label><b>İsim</b></label>
                             </div>
                             <div class="col-10">
-                                {{$data->user->name}}
+                                {{$data->name}}
                             </div>
                         </div>
                     </div>
                     <div class="form-group" style="border-bottom: 1px solid gray;">
                         <div class="row">
                             <div class="col-2">
-                                <label><b>Treatment</b></label>
+                                <label><b>Email</b></label>
                             </div>
                             <div class="col-10">
-                                {{$data->treatment->title}}
+                                {{$data->email}}
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group" style="border-bottom: 1px solid gray;">
                         <div class="row">
                             <div class="col-2">
-                                <label><b>Subject</b></label>
+                                <label><b>Roller</b></label>
                             </div>
                             <div class="col-10">
-                                {{$data->subject}}
+                                @foreach($data->role as $row)
+                                    {{$row->name}}<a href="{{route('admin_user_role_delete',['userid'=>$data->id,'roleid'=>$row->id])}}" onclick="return confirm('Siliniyor! Emin misiniz ? ')"><img src="{{asset('assets')}}/img/delete-button.png" width="30px"/> </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group" style="border-bottom: 1px solid gray;">
                         <div class="row">
                             <div class="col-2">
-                                <label><b>Review</b></label>
+                                <label><b>Rol Ekle</b></label>
                             </div>
                             <div class="col-10">
-                                {{$data->review}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>Rate</b></label>
-                            </div>
-                            <div class="col-10">
-                                {{$data->rate}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>IP</b></label>
-                            </div>
-                            <div class="col-10">
-                                {{$data->IP}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>Created Date</b></label>
-                            </div>
-                            <div class="col-10">
-                                {{$data->created_at}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>Update Date</b></label>
-                            </div>
-                            <div class="col-10">
-                                {{$data->updated_at}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="border-bottom: 1px solid gray;padding: 1rem;">
-                        <div class="row">
-                            <div class="col-2">
-                                <label><b>Status</b></label>
-                            </div>
-                            <div class="col-10">
-                                <select name="status">
-                                    <option selected>{{$data->status}}</option>
-                                    <option>True</option>
-                                    <option>False</option>
+                                <select name="roleid">
+                                    @foreach($datalist as $rs)
+                                        <option value="{{$rs->id}}">{{$rs->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
+
+
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Update Message</button>
+                        <button type="submit" class="btn btn-primary">Rol Ekle</button>
                     </div>
 
                 </form>

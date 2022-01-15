@@ -1,3 +1,14 @@
-@extends('layouts.home')
+@extends("layouts.home")
+@section('title',$setting->title . "")
 
-@section('title',"Nigo Denta Shop")
+
+@section('description'){{$setting->description}}@endsection
+
+@section('keywords',$setting->keywords)
+
+
+@section('content')
+
+
+
+@endsection

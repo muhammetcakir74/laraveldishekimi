@@ -18,13 +18,13 @@
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{asset('assets')}}/admin/css/argon.css?v=1.2.0" type="text/css">
 
-    <title>Image Gallery</title>
+    <title>Resim Galerisi</title>
 </head>
 <body>
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">
-            Treatment : <span style="color: #00BB33;">{{$data->title}}</span>
+            Tedavi : <span style="color: #00BB33;">{{$data->title}}</span>
         </h3>
     </div>
 
@@ -33,17 +33,17 @@
         <form action="{{route('admin_image_store',['treatment_id'=>$data->id])}}" method="post" enctype="multipart/form-data" >
             @csrf
             <div class="form-group">
-                <label><b>Title</b></label>
+                <label><b>İsim</b></label>
                 <input type="text" class="form-control" id="title" name="title">
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <label><b>Image</b></label>
+                    <label><b>Resim</b></label>
                     <input type="file" class="form-control" id="name" name="image">
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Add Image</button>
+            <button type="submit" class="btn btn-primary">Resimi Ekle</button>
         </form>
 
     </div>
@@ -55,9 +55,9 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col" class="sort" data-sort="name">Id</th>
-                <th scope="col" class="sort" data-sort="name">Title(s)</th>
-                <th scope="col" class="sort" data-sort="name" style="text-align: center;">Image</th>
-                <th scope="col" class="sort" data-sort="name" style="text-align: center">Delete</th>
+                <th scope="col" class="sort" data-sort="name">İsim</th>
+                <th scope="col" class="sort" data-sort="name" style="text-align: center;">Resim</th>
+                <th scope="col" class="sort" data-sort="name" style="text-align: center">Sil</th>
             </tr>
             </thead>
             <tbody class="list">
@@ -91,7 +91,7 @@
                     <th scope="row" style="text-align: center">
                         <div class="media align-items-center">
                             <div class="media-body">
-                                <span class="name mb-0 text-xl"><a href="{{route('admin_image_delete',['id'=>$rs->id,'treatment_id'=>$data->id])}}" onclick="return confirm('Record will be delete Are you sure?')"><i class="ni ni-basket text-white"></i></a></span>
+                                <span class="name mb-0 text-xl"><a href="{{route('admin_image_delete',['id'=>$rs->id,'treatment_id'=>$data->id])}}" onclick="return confirm('Kayıt silinecek emin misiniz?')"><img src="{{asset('assets')}}/img/delete-button.png" width="30px"></a></span>
                             </div>
                         </div>
                     </th>
@@ -106,7 +106,7 @@
 
 
     <div class="card-footer">
-        Footer
+        --
     </div>
 </div>
 
