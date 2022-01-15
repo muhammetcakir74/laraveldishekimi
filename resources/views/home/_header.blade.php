@@ -118,7 +118,11 @@
                 @auth
 
                     <div style="margin-left: 170px !important;margin-top: 20px; width: 250px;">
-                        <div style="float: left; padding: 10px 10px;"><img src="{{asset('assets')}}/admin/img/theme/team-4.jpg" width="30px"></div>
+                        <div style="float: left; padding: 10px 10px;"> @if(\Illuminate\Support\Facades\Auth::user()->profile_photo_path)
+                                <img src="{{\Illuminate\Support\Facades\Storage::url(\Illuminate\Support\Facades\Auth::user()->profile_photo_path)}}" height="50" style="border-radius: 10px;" alt="">
+                            @else
+                                <div><i class="fa fa-user-o" style="float: left;padding: 15px 15px;"></i></div>
+                            @endif</div>
                         <div style="float: left!important;">
                             <a href="#" class="text-center" style="color: #0a0c0d;float: left;"><b>{{\Illuminate\Support\Facades\Auth::user()->name}}</b></a><br>
                             <a href="{{route('logout')}}" class="text-center" style="color: #0a0c0d;font-size: 15px;"><i class="fa fa-power-off" aria-hidden="true"></i>    Çıkış</a>
