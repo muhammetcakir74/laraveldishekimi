@@ -105,7 +105,6 @@ class RandevuController extends Controller
         $data->date = $request->input('date');
         $data->time = $request->input('time');
         $data->note = $request->input('note');
-        $data->status = $request->input('status');
         $data->save();
         return back()->with('succes','Randevu Güncellendi.');
     }

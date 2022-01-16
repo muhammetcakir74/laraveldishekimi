@@ -104,14 +104,7 @@
                                 </script>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label><b>Durum</b></label>
-                            <select id="status"  name="status" class="form-control">
-                                <option selected>{{$data->status}}</option>
-                                <option>Onaylanmadı</option>
-                                <option>Onaylandı</option>
-                            </select>
-                        </div>
+
 
 
                         <button type="submit" class="btn btn-primary">Randevuyu Düzenle</button>
